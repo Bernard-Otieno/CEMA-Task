@@ -119,27 +119,58 @@ class CheckoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Calculate the total price by summing up the prices of all cart items
+    double totalPrice = cartItems.fold(
+      0.0,
+      (previousValue, cartItem) => previousValue + (cartItem.medicine.price * cartItem.quantity),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Checkout'),
       ),
-      body: ListView.builder(
-        itemCount: cartItems.length,
-        itemBuilder: (context, index) {
-          final cartItem = cartItems[index];
-          return ListTile(
-            title: Text(cartItem.medicine.name),
-            subtitle: Text('\$${cartItem.medicine.price.toStringAsFixed(2)}'),
-            trailing: Text('Quantity: ${cartItem.quantity}'),
-          );
-        },
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: cartItems.length,
+              itemBuilder: (context, index) {
+                final cartItem = cartItems[index];
+                return ListTile(
+                  title: Text(cartItem.medicine.name),
+                  subtitle: Text('\$${(cartItem.medicine.price * cartItem.quantity).toStringAsFixed(2)}'),
+                  trailing: const Row(
+                    mainAxisSize: MainAxisSize.min,
+ 
+                  ),
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    // Place your logic for finalizing the purchase here
+                  },
+                  child: const Text('Buy Now'),
+                ),
+                const SizedBox(height: 10),
+                TextButton(
+                  onPressed: () {
+                    // Navigate back to the previous screen when cancel button is pressed
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
-}
-
-void main() {
-  runApp(const MaterialApp(
-    home: MedicineListPage(),
-  ));
 }
