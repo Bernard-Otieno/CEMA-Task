@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "533926334077",
+    "project_id": "cema-task",
+    "storage_bucket": "cema-task.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533926334077:android:aeab490a4db9a692fa2b14",
+        "android_client_info": {
+          "package_name": "com.example.task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGMmcrmsg-8vbOnwwpY87ZdNe6tfZUFKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
