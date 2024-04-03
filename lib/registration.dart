@@ -1,36 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:task/login.dart';
 import 'package:task/medicine_list_page.dart';
 
-class LoginPage extends StatelessWidget {
+class RegistrationPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  Future<void> loginUser(BuildContext context) async {
+  Future<void> registerUser(BuildContext context) async {
     final email = emailController.text;
     final password = passwordController.text;
 
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      // Login successful, navigate to next screen
+      // Registration successful, navigate to next screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MedicineListPage()), // Replace NextPage with the page you want to navigate to after login
+        MaterialPageRoute(
+            builder: (context) =>
+                MedicineListPage()), 
       );
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        // Handle user not found error
+      if (e.code == 'weak-password') {
+        // Handle weak password error
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('No user found for that email.')),
+          SnackBar(content: Text('The password provided is too weak.')),
         );
-      } else if (e.code == 'wrong-password') {
-        // Handle wrong password error
+      } else if (e.code == 'email-already-in-use') {
+        // Handle email already in use error
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Wrong password provided for that user.')),
+          SnackBar(content: Text('The account already exists for that email.')),
         );
       } else {
         // Handle other FirebaseAuth exceptions
@@ -50,7 +54,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
+      appBar: AppBar(title: Text('Registration')),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -67,8 +71,18 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: () => loginUser(context),
-              child: Text('Login'),
+              onPressed: () => registerUser(context),
+              child: Text('Register'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Navigate to login page when login button is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
+              child: Text('Already have an account? Login'),
             ),
           ],
         ),
