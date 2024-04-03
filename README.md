@@ -1,6 +1,5 @@
 # Cema-task
-
-A new Flutter project.
+I utilised firebase because I am not familiar with microsoftSQL. Given the time constraints I decided to use what I was familiar with. (Time given was 27th March 2024 to 3rd April 2024)
 
 ## Getting Started
 
