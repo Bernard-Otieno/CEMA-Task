@@ -1,5 +1,5 @@
 # Cema-task
-I utilised firebase because I am not familiar with microsoftSQL. Given the time constraints I decided to use what I was familiar with. (Time given was 27th March 2024 to 3rd April 2024)
+## I utilised firebase because I am not familiar with microsoftSQL. Given the time constraints I decided to use what I was familiar with. (Time given was 27th March 2024 to 3rd April 2024)
 
 Task: Utibu health is a health facility that caters for patients with chronic conditions such as HIV, diabetes and hypertension. Stable patients can be given medication to last several months without having to return for a doctor’s visit. They can also refill their prescriptions at the pharmacy without having to see a doctor. The pharmacist at Utibu health has an inventory system that manages the stock of medication items, customer orders, sales, invoices and payments. It runs on Microsoft SQL Server and on a legacy desktop application developed in Delphi.
  
